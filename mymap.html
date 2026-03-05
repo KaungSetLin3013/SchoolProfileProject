@@ -1,15 +1,336 @@
-<html>
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-<title>うまれたところ</title>
+  <meta charset="utf-8">
+  <title>うまれたところ — Yangon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;700&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --dark: #0e0e0e;
+      --dark2: #161616;
+      --dark3: #1e1e1e;
+      --text: #e8e0d0;
+      --muted: #8a8070;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(201,168,76,0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 30px 100px;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      margin-bottom: 70px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      opacity: 0.6;
+      text-decoration: none;
+      margin-bottom: 32px;
+      transition: opacity 0.2s;
+    }
+
+    .back-link:hover { opacity: 1; }
+
+    .header-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 8vw, 84px);
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+    }
+
+    .header h1 span { color: var(--gold); }
+
+    /* ── SECTION ── */
+    .section {
+      margin-bottom: 60px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .section:nth-child(2) { animation-delay: 0.1s; }
+    .section:nth-child(3) { animation-delay: 0.2s; }
+    .section:nth-child(4) { animation-delay: 0.3s; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .section-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(201,168,76,0.3), transparent);
+    }
+
+    /* ── INFO GRID ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.15);
+      margin-bottom: 32px;
+    }
+
+    .info-cell {
+      background: var(--dark2);
+      padding: 22px 24px;
+      transition: background 0.2s;
+    }
+
+    .info-cell:hover { background: var(--dark3); }
+
+    .info-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .info-value {
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .info-value a {
+      color: var(--gold-light);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .info-value a:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* ── MAP ── */
+    .map-wrap {
+      border: 1px solid rgba(201,168,76,0.15);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .map-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .map-wrap iframe {
+      display: block;
+      width: 100%;
+      height: 450px;
+      border: 0;
+      filter: grayscale(30%) contrast(1.05);
+    }
+
+    /* ── DESC BLOCK ── */
+    .desc-block {
+      position: relative;
+      padding: 32px 40px;
+      border-left: 2px solid var(--gold);
+      background: var(--dark2);
+      overflow: hidden;
+      margin-top: 28px;
+    }
+
+    .desc-block::before {
+      content: '🇲🇲';
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 100px;
+      opacity: 0.06;
+      line-height: 1;
+    }
+
+    .desc-block p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      margin-top: 80px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(201,168,76,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    .footer-link a {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      opacity: 0.5;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .footer-link a:hover { opacity: 1; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .map-wrap iframe { height: 300px; }
+      .footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
 </head>
-<body background="../img/nmb004.png">
-  <h1>生まれた町<a href="https://maps.app.goo.gl/5aNk3S3oyLQjVwxD8">Yangon</a></h1>
-  
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d488799.67591351684!2d95.85190884071179!3d16.838879493817203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1949e223e196b%3A0x56fbd271f8080bb4!2sYangon%2C%20ミャンマー%20(Burma)!5e0!3m2!1sen!2sjp!4v1748580510481!5m2!1sen!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-<p>
-ミャンマーで生まれました。Thaiの近くです。<br>
-</p>
-<a href="myself.html">戻る</a>
+<body>
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+      <a class="back-link" href="myself.html">← 自己紹介に戻る</a>
+      <div class="header-label">うまれたところ / Birthplace</div>
+      <h1>生まれた<br><span>町</span></h1>
+    </header>
+
+    <!-- INFO -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">出身地について</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="info-grid">
+        <div class="info-cell">
+          <div class="info-label">都市</div>
+          <div class="info-value"><a href="https://maps.app.goo.gl/5aNk3S3oyLQjVwxD8" target="_blank">Yangon</a></div>
+        </div>
+        <div class="info-cell">
+          <div class="info-label">国</div>
+          <div class="info-value">🇲🇲 ミャンマー</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-label">近隣</div>
+          <div class="info-value">Thailandの近く</div>
+        </div>
+      </div>
+      <div class="desc-block">
+        <p>ミャンマーで生まれました。Thaiの近くです。</p>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">地図</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d488799.67591351684!2d95.85190884071179!3d16.838879493817203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1949e223e196b%3A0x56fbd271f8080bb4!2sYangon%2C%20ミャンマー%20(Burma)!5e0!3m2!1sen!2sjp!4v1748580510481!5m2!1sen!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-name">Kaung Set Lin</div>
+      <div class="footer-link">
+        <a href="myself.html">← 自己紹介に戻る</a>
+      </div>
+    </footer>
+
+  </div>
 </body>
 </html>
-<!DOCTYPE html>
