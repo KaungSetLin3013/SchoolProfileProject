@@ -1,284 +1,636 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>私の自己紹介</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Custom Styles */
-        body {
-            background-image: url("BG.jpg");
-            background-size: cover;
-            background-attachment: fixed;
-            font-family: 'Arial', sans-serif;
-            padding-top: 70px; /* Space for fixed navbar */
-            color: #333;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>私の自己紹介 — Kaung Set Lin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white: #f5f2ec;
+      --black: #111010;
+      --red: #e8321a;
+      --gray: #888;
+      --light: #e9e5de;
+      --mid: #ccc8c0;
+    }
 
-        /* Navbar */
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.95) !important;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 10px 0;
-        }
-        .navbar-brand img {
-            height: 50px; /* Adjust GIF height */
-            width: auto;
-            border-radius: 5px;
-        }
-        .nav-link {
-            font-weight: 500;
-            margin: 0 10px;
-            color: #333 !important;
-        }
-        .nav-link:hover {
-            color: #007bff !important;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-        /* Main Content */
-        .profile-container {
-            background-color: rgba(255, 255, 255, 0.85);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 20px auto;
-            max-width: 800px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        img.profile-pic {
-            width: 100%;
-            max-width: 317.6px;
-            height: auto;
-            border: 4px solid #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin: 15px 0;
-        }
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      cursor: none;
+    }
 
-        /* Photo Gallery */
-        .photo-gallery {
-            margin-top: 30px;
-        }
-        .photo-gallery img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            transition: transform 0.3s;
-        }
-        .photo-gallery img:hover {
-            transform: scale(1.03);
-        }
+    /* ── CURSOR ── */
+    .cursor {
+      width: 10px; height: 10px;
+      background: var(--red);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid var(--black);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.25s, height 0.25s, border-color 0.2s;
+    }
 
-        /* Footer */
-        hr {
-            margin: 30px 0;
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-        .map-link {
-            color: #0066cc;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            max-width: 800px;
-            background: white;
-            padding: 20px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
-            z-index: 1000;
-        }
-        .popup-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .close-btn {
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-        }
-    </style>
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: var(--white);
+      border-bottom: 1px solid var(--mid);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo img { height: 38px; width: auto; }
+    .nav-logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px; letter-spacing: 0.08em; color: var(--black);
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 12px; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gray); text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--red);
+      transition: width 0.25s;
+    }
+    .nav-links a:hover { color: var(--black); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ── HERO ── */
+    .hero {
+      padding-top: 80px;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      padding: 80px 48px;
+      display: flex; flex-direction: column; justify-content: center;
+      border-right: 1px solid var(--mid);
+      animation: slideIn 0.9s ease both;
+    }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: inline-block;
+      width: 32px; height: 1px; background: var(--red);
+    }
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 9vw, 128px);
+      line-height: 0.88; letter-spacing: 0.02em;
+      color: var(--black); margin-bottom: 32px;
+    }
+    .hero-name em {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic; color: var(--red);
+    }
+    .hero-desc {
+      font-size: 15px; line-height: 1.8;
+      color: var(--gray); max-width: 380px; margin-bottom: 48px;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 14px;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--black); text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .hero-cta:hover { gap: 22px; }
+    .hero-cta-arrow {
+      width: 40px; height: 40px;
+      border: 1px solid var(--black); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero-cta:hover .hero-cta-arrow { background: var(--black); color: var(--white); }
+
+    .hero-right {
+      position: relative; overflow: hidden;
+      animation: fadeIn 1.1s 0.2s ease both;
+    }
+    .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+      transition: transform 8s ease;
+    }
+    .hero-right:hover img { transform: scale(1.04); }
+    .hero-img-overlay {
+      position: absolute; bottom: 40px; left: 40px;
+      background: var(--white); padding: 14px 20px;
+      font-size: 11px; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gray);
+      border-left: 3px solid var(--red);
+    }
+    .hero-tag {
+      position: absolute; top: 40px; right: 40px;
+      width: 80px; height: 80px;
+      border: 1px solid var(--mid); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; font-size: 9px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gray);
+      animation: spin 20s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .scroll-hint {
+      position: absolute; bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gray);
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── SECTIONS ── */
+    .page-section {
+      padding: 100px 48px;
+      border-top: 1px solid var(--mid);
+    }
+    .section-label {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 56px;
+    }
+    .section-label-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px; letter-spacing: 0.15em; color: var(--red);
+    }
+    .section-label-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gray);
+    }
+    .section-label-line { flex: 1; height: 1px; background: var(--mid); }
+
+    /* ── ABOUT GRID ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2px; background: var(--mid);
+      border: 1px solid var(--mid);
+    }
+    .about-card {
+      background: var(--white); padding: 36px;
+      transition: background 0.2s;
+    }
+    .about-card:hover { background: var(--light); }
+    .about-card-label {
+      font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--red); margin-bottom: 12px;
+    }
+    .about-card-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px; line-height: 1.2; color: var(--black);
+    }
+    .about-card-value span.map-link {
+      cursor: pointer; border-bottom: 2px solid var(--red);
+      transition: color 0.2s;
+    }
+    .about-card-value span.map-link:hover { color: var(--red); }
+    .about-card-sub { font-size: 13px; color: var(--gray); margin-top: 6px; }
+    .about-wide { grid-column: span 2; }
+
+    /* ── SKILLS ── */
+    .skills-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    }
+    .skill-block h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px; margin-bottom: 24px; color: var(--black);
+    }
+    .skill-rows { display: flex; flex-direction: column; gap: 2px; }
+    .skill-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 20px; background: var(--light); font-size: 14px;
+      transition: background 0.2s, padding-left 0.2s, color 0.2s;
+    }
+    .skill-row:hover { background: var(--black); color: var(--white); padding-left: 28px; }
+    .skill-row span:last-child {
+      font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gray);
+    }
+    .skill-row:hover span:last-child { color: var(--red); }
+    .app-badges { display: flex; flex-direction: column; gap: 2px; }
+    .app-badge {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px; background: var(--light); font-size: 15px;
+      transition: background 0.2s, padding-left 0.2s, color 0.2s;
+    }
+    .app-badge:hover { background: var(--black); color: var(--white); padding-left: 28px; }
+    .check { color: var(--red); font-size: 18px; }
+
+    /* ── LIKES ── */
+    .likes-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2px; background: var(--mid); border: 1px solid var(--mid);
+    }
+    .like-panel {
+      background: var(--white); padding: 56px 48px;
+      transition: background 0.3s;
+    }
+    .like-panel:hover { background: var(--light); }
+    .like-panel-icon { font-size: 56px; margin-bottom: 20px; display: block; }
+    .like-panel h3 {
+      font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--red); margin-bottom: 14px;
+    }
+    .like-panel p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px; line-height: 1.1; color: var(--black);
+    }
+    .like-panel p a {
+      color: inherit; text-decoration: none;
+      border-bottom: 2px solid var(--red);
+    }
+
+    /* ── DREAM ── */
+    .dream-section {
+      padding: 100px 48px; border-top: 1px solid var(--mid);
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 64px; align-items: center;
+    }
+    .dream-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(100px, 15vw, 180px);
+      line-height: 1; color: var(--light);
+      letter-spacing: -0.02em; user-select: none;
+    }
+    .dream-content h2 {
+      font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--red); margin-bottom: 20px;
+    }
+    .dream-content p {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.2; color: var(--black);
+    }
+
+    /* ── GALLERY ── */
+    .gallery-section {
+      padding: 100px 48px; border-top: 1px solid var(--mid);
+    }
+    .gallery-intro {
+      font-size: 13px; letter-spacing: 0.05em;
+      color: var(--gray); margin-bottom: 32px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 260px 260px;
+      gap: 4px;
+    }
+    .g1 { grid-column: span 2; }
+    .g-item { overflow: hidden; position: relative; background: var(--light); }
+    .g-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.6s ease, filter 0.3s;
+      filter: saturate(0.9);
+    }
+    .g-item:hover img { transform: scale(1.07); filter: saturate(1.1); }
+    .g-item::after {
+      content: ''; position: absolute; inset: 0;
+      border: 2px solid transparent;
+      transition: border-color 0.3s; pointer-events: none;
+    }
+    .g-item:hover::after { border-color: var(--red); }
+
+    /* ── MAP POPUP ── */
+    .overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6); z-index: 800;
+      backdrop-filter: blur(6px);
+    }
+    .popup {
+      display: none; position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%; max-width: 820px;
+      background: var(--white); z-index: 900;
+    }
+    .popup-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 28px; border-bottom: 1px solid var(--mid);
+    }
+    .popup-header h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px; letter-spacing: 0.1em; color: var(--black);
+    }
+    .close-btn {
+      width: 36px; height: 36px; border: 1px solid var(--mid);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; cursor: pointer;
+      transition: background 0.2s, color 0.2s; color: var(--gray);
+    }
+    .close-btn:hover { background: var(--black); color: var(--white); }
+    .popup iframe { display: block; width: 100%; height: 440px; border: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--mid);
+      padding: 40px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--black); color: var(--white);
+    }
+    .footer-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px; letter-spacing: 0.08em;
+    }
+    .footer-name em {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic; color: var(--red);
+    }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a {
+      font-size: 11px; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--red); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 60vw; }
+      .navbar { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .page-section { padding: 64px 24px; }
+      .skills-layout { grid-template-columns: 1fr; gap: 32px; }
+      .likes-layout { grid-template-columns: 1fr; }
+      .dream-section { grid-template-columns: 1fr; gap: 20px; padding: 64px 24px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-grid .g1 { grid-column: span 2; }
+      .gallery-section { padding: 64px 24px; }
+      footer { padding: 32px 24px; flex-direction: column; gap: 20px; text-align: center; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-wide { grid-column: span 1; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navbar with GIF Logo -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="LogoGiF.gif" alt="Animated Logo" class="d-inline-block align-top">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#profile">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#gallery">Gallery</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Main Content -->
-    <div class="container profile-container" id="profile">
-        <h1 class="text-center"><a href="myself.html">自己紹介</a></h1>
-        <h2 class="text-center">名前: Kaung Set Lin</h2>
-        
-        <div class="text-center">
-            <img class="profile-pic" src="ProfilePic.jpg" alt="Profile Picture">
-        </div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-        <div class="text-center">
-            <p>
-                <strong>出身地:</strong> <span class="map-link" onclick="openMap()">Myanmar</span><br>
-                
-<div class="overlay" id="overlay"></div>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a class="nav-logo" href="#">
+      <img src="LogoGiF.gif" alt="Logo">
+      <span class="nav-logo-text">KSL</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+    </ul>
+  </nav>
 
-<div class="popup" id="mapPopup">
+  <!-- MAP POPUP -->
+  <div class="overlay" id="overlay"></div>
+  <div class="popup" id="mapPopup">
     <div class="popup-header">
-        <h2>Yangon Map</h2>
-        <span class="close-btn" onclick="closeMap()">&times;</span>
+      <h2>Yangon, Myanmar</h2>
+      <div class="close-btn" onclick="closeMap()">✕</div>
     </div>
-    <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d488799.67591351684!2d95.85190884071179!3d16.838879493817203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1949e223e196b%3A0x56fbd271f8080bb4!2sYangon%2C%20ミャンマー%20(Burma)!5e0!3m2!1sen!2sjp!4v1748580510481!5m2!1sen!2sjp" 
-        width="100%" 
-        height="450" 
-        style="border:0;" 
-        allowfullscreen 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d488799.67591351684!2d95.85190884071179!3d16.838879493817203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1949e223e196b%3A0x56fbd271f8080bb4!2sYangon%2C%20ミャンマー%20(Burma)!5e0!3m2!1sen!2sjp!4v1748580510481!5m2!1sen!2sjp"
+      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
     </iframe>
-</div>
-                <strong>第一言語:</strong> Myanmar<br>
-                <strong>来日年月日:</strong> 2002年01月
-            </p>
-        </div>
+  </div>
 
-        <h2 id="skills">語学</h2>
-        <p>
-            <strong>話せる外国語:</strong> 日本語<br>
-            <strong>日本語能力試験:</strong> N2取得
-        </p>
-
-<h2>パソコン</h2>
-<div class="table-responsive">
-    <table class="table table-bordered">
-        <tr>
-            <th>項目</th>
-            <th>内容</th>
-        </tr>
-        <tr>
-            <td>パソコンをもっている</td>
-            <td>はい</td>
-        </tr>
-        <tr>
-            <td>OS</td>
-            <td>macOS</td>
-        </tr>
-        <tr>
-            <td>用途</td>
-            <td>Coding</td>
-        </tr>
-    </table>
-</div>
-
-<div class="table-responsive">
-    <table class="table table-bordered">
-        <tr>
-            <th colspan="3">使用経験の有無</th>
-        </tr>
-        <tr>
-            <th>EXCEL</th>
-            <th>WORD</th>
-            <th>PowerPoint</th>
-        </tr>
-        <tr>
-            <td>○</td>
-            <td>○</td>
-            <td>○</td>
-        </tr>
-    </table>
-</div>
-
-        <h2>好きなこと、嫌いなこと</h2>
-        <p><strong>好きなこと:</strong> ゲーム</p>
-        <p><strong>嫌いなこと:</strong> 漢字</p>
-
-        <h2>わたしのゆめ</h2>
-        <p><strong>目標:</strong> 日本の会社で働きたいです</p>
-
-        <h2 id="gallery">ひとこと</h2>
-        <p>私が取った写真</p>
-        <hr>
-
-        <div class="row photo-gallery">
-            <div class="col-md-4">
-                <img src="Shoot1.jpg" alt="Nature Photo 1">
-            </div>
-            <div class="col-md-4">
-                <img src="Shoot2.jpg" alt="Nature Photo 2">
-            </div>
-            <div class="col-md-4">
-                <img src="Shoot3.jpg" alt="Nature Photo 3">
-            </div>
-            <div class="col-md-4">
-              <img src="Shoot4.jpg" alt="Nature Photo 1">
-          </div>
-          <div class="col-md-4">
-              <img src="Shoot5.jpg" alt="Nature Photo 2">
-          </div>
-          <div class="col-md-4">
-              <img src="Shoot6.jpg" alt="Nature Photo 3">
-          </div>
-        </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">自己紹介</div>
+      <h1 class="hero-name">KAUNG<br><em>Set</em><br>LIN</h1>
+      <p class="hero-desc">
+        ミャンマー出身、2002年に来日。<br>
+        日本語能力試験N2取得。<br>
+        目標は日本の会社で働くこと。
+      </p>
+      <a class="hero-cta" href="myself.html">
+        プロフィールを見る
+        <span class="hero-cta-arrow">→</span>
+      </a>
     </div>
+    <div class="hero-right">
+      <img src="ProfilePic.jpg" alt="Kaung Set Lin" onerror="this.parentElement.style.background='#e9e5de'">
+      <div class="hero-img-overlay">Myanmar → Japan · 2002</div>
+      <div class="hero-tag">PROFILE<br>2025</div>
+    </div>
+    <div class="scroll-hint">↓ scroll</div>
+  </section>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function openMap() {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('mapPopup').style.display = 'block';
-        }
-        
-        function closeMap() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('mapPopup').style.display = 'none';
-        }
-        
-        // Close when clicking outside popup
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('overlay')) {
-                closeMap();
-            }
-        }
-    </script>
+  <!-- ABOUT -->
+  <section class="page-section reveal" id="about">
+    <div class="section-label">
+      <span class="section-label-num">01</span>
+      <span class="section-label-text">基本情報</span>
+      <div class="section-label-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-card-label">出身地</div>
+        <div class="about-card-value">
+          <span class="map-link" onclick="openMap()">🇲🇲 Myanmar</span>
+        </div>
+        <div class="about-card-sub">クリックして地図を見る</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">第一言語</div>
+        <div class="about-card-value">Myanmar語</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">来日年月日</div>
+        <div class="about-card-value">2002年 01月</div>
+      </div>
+      <div class="about-card about-wide">
+        <div class="about-card-label">日本語能力</div>
+        <div class="about-card-value">JLPT <em style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--red)">N2</em> 取得</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="page-section reveal" id="skills">
+    <div class="section-label">
+      <span class="section-label-num">02</span>
+      <span class="section-label-text">スキル・パソコン</span>
+      <div class="section-label-line"></div>
+    </div>
+    <div class="skills-layout">
+      <div class="skill-block">
+        <h3>PC Setup</h3>
+        <div class="skill-rows">
+          <div class="skill-row"><span>所有</span><span>あり</span></div>
+          <div class="skill-row"><span>OS</span><span>macOS</span></div>
+          <div class="skill-row"><span>用途</span><span>Coding</span></div>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h3>Applications</h3>
+        <div class="app-badges">
+          <div class="app-badge"><span>📊 Microsoft Excel</span><span class="check">✓</span></div>
+          <div class="app-badge"><span>📝 Microsoft Word</span><span class="check">✓</span></div>
+          <div class="app-badge"><span>📐 PowerPoint</span><span class="check">✓</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIKES -->
+  <section class="page-section reveal">
+    <div class="section-label">
+      <span class="section-label-num">03</span>
+      <span class="section-label-text">好き・嫌い</span>
+      <div class="section-label-line"></div>
+    </div>
+    <div class="likes-layout">
+      <div class="like-panel">
+        <span class="like-panel-icon">🎮</span>
+        <h3>好きなこと</h3>
+        <p><a href="mylikes.html">ゲーム</a></p>
+      </div>
+      <div class="like-panel">
+        <span class="like-panel-icon">📖</span>
+        <h3>嫌いなこと</h3>
+        <p>漢字</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DREAM -->
+  <div class="dream-section reveal">
+    <div class="dream-num">04</div>
+    <div class="dream-content">
+      <h2>わたしのゆめ / Dream</h2>
+      <p>日本の会社で<br>働きたいです。</p>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <section class="gallery-section reveal" id="gallery">
+    <div class="section-label">
+      <span class="section-label-num">05</span>
+      <span class="section-label-text">ひとこと・ギャラリー</span>
+      <div class="section-label-line"></div>
+    </div>
+    <p class="gallery-intro">私が取った写真</p>
+    <div class="gallery-grid">
+      <div class="g-item g1"><img src="Shoot1.jpg" alt="Photo 1"></div>
+      <div class="g-item"><img src="Shoot2.jpg" alt="Photo 2"></div>
+      <div class="g-item"><img src="Shoot3.jpg" alt="Photo 3"></div>
+      <div class="g-item g1"><img src="Shoot4.jpg" alt="Photo 4"></div>
+      <div class="g-item"><img src="Shoot5.jpg" alt="Photo 5"></div>
+      <div class="g-item"><img src="Shoot6.jpg" alt="Photo 6"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">KAUNG <em>Set</em> LIN</div>
+    <div class="footer-links">
+      <a href="myself.html">自己紹介</a>
+      <a href="mylikes.html">好きなこと</a>
+      <a href="mymap.html">地図</a>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+    (function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    })();
+
+    // Map popup
+    function openMap() {
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('mapPopup').style.display = 'block';
+    }
+    function closeMap() {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('mapPopup').style.display = 'none';
+    }
+    window.onclick = e => {
+      if (e.target === document.getElementById('overlay')) closeMap();
+    };
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
